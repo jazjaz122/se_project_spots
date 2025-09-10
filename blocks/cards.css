@@ -1,5 +1,6 @@
 .cards {
-  padding-top: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   background-color: #fcf5e5;
 }
 
@@ -8,7 +9,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 413px);
+  grid-template-columns: repeat(3, 413px);
   justify-content: center;
   gap: 40px 20px;
 }
