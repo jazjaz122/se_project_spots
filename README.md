@@ -21,6 +21,9 @@ Mobile View (320px – 629px)
 
 This approach ensures a fluid, adaptive design that maintains the integrity of the Figma layouts while accommodating real-world screen sizes and devices.
 
+GitHub URL
+https://jazjaz122.github.io/se_project_spots/
+
 Figma
 
 Please see Figma design below.
