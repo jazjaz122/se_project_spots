@@ -30,8 +30,7 @@ Please see Figma design below.
 
 https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1
 
-**Images**
+Project Video
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Good luck and have fun!
+https://us02web.zoom.us/rec/share/CRhDb15xtSRKBDHyKXk9RsePwcK1M4Neiw4oTmQ-KO3Fgc4olKCpVuvqdKBRf-84.8cBBnD7Q1TLw5o8H?startTime=1758058239000
+Passcode: 1\*jdk49A
