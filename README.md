@@ -32,5 +32,5 @@ https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spo
 
 Project Video
 
-https://us02web.zoom.us/rec/share/CRhDb15xtSRKBDHyKXk9RsePwcK1M4Neiw4oTmQ-KO3Fgc4olKCpVuvqdKBRf-84.8cBBnD7Q1TLw5o8H?startTime=1758058239000
+https://us02web.zoom.us/rec/share/q1ZJWWbMfhTAejQBLSxF-TWvr4W4GKIjAoCVAStOKe4T-FAid4uCblUc8DjLKqnK.qe5v1KeKB6Oa3q8A?from=hub
 Passcode: 1\*jdk49A
