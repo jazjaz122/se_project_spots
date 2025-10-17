@@ -1,9 +1,6 @@
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileNewPost = editProfileModal.querySelector(
-  ".profile__add-button"
-);
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = document.querySelector("#profile-name-input");
 
@@ -14,6 +11,13 @@ const editProfileDescriptionInput = document.querySelector(
 const newPostAddButton = document.querySelector(".profile__add-button");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+
+const newPostForm = newPostModal.querySelector(".modal__form");
+newPostForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  console.log("Form submitted!");
+  newPostModal.classList.remove("modal_is-opened");
+});
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
@@ -33,21 +37,14 @@ newPostAddButton.addEventListener("click", function () {
 });
 
 newPostCloseBtn.addEventListener("click", function () {
+  console.log("Close button clicked!");
   newPostModal.classList.remove("modal_is-opened");
 });
 
-function handleEditProfileSubmit(evt) {
+editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
+  console.log("Form submitted!");
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   editProfileModal.classList.remove("modal_is-opened");
-}
-
-editProfileForm.addEventListener("submit", handleEditProfileNewPostSubmit);
-
-function handleEditProfileNewPostSubmit(evt) {
-  evt.preventDefault();
-  editProfileNewPost.classList.remove("modal_is-opened");
-}
-
-editProfileForm.addEventListener("submit", handleEditProfileNewPostSubmit);
+});
