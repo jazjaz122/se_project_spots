@@ -1,21 +1,23 @@
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
+const editProfileCloseBtn = editProfileModal.querySelector(
+  ".modal__edit-close-btn"
+);
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = document.querySelector("#profile-name-input");
-
 const editProfileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
 const newPostAddButton = document.querySelector(".profile__add-button");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+const newPostCloseBtn = newPostModal.querySelector(".modal__post-close-btn");
 
 const newPostForm = newPostModal.querySelector(".modal__form");
+
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  console.log("Form submitted!");
+  console.log("New Post Form button submitted!");
   newPostModal.classList.remove("modal_is-opened");
 });
 
@@ -29,6 +31,7 @@ editProfileBtn.addEventListener("click", function () {
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
+  console.log("Edit Profile Close button clicked!");
   editProfileModal.classList.remove("modal_is-opened");
 });
 
@@ -37,14 +40,12 @@ newPostAddButton.addEventListener("click", function () {
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-  console.log("Close button clicked!");
+  console.log("New Post Close button clicked!");
   newPostModal.classList.remove("modal_is-opened");
 });
 
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  console.log("Form submitted!");
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+  console.log("Edit Profile Form button submitted!");
   editProfileModal.classList.remove("modal_is-opened");
 });
