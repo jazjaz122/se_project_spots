@@ -121,3 +121,10 @@
 .modal__input::placeholder {
   color: #2121214d;
 }
+
+@media screen and (max-width: 480px) {
+  .modal__content {
+    padding: 16px 20px;
+    max-width: 90%;
+  }
+}
