@@ -46,6 +46,7 @@ newPostCloseBtn.addEventListener("click", function () {
 
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  console.log("Edit Profile Form button submitted!");
+  profileNameEl.textContent = editProfileNameInput.value;
+  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   editProfileModal.classList.remove("modal_is-opened");
 });
