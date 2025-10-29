@@ -25,6 +25,14 @@ const initialCards = [
   },
 ];
 
+function openModal(modal) {
+  modal.classList.add("modal_is_opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_is_opened");
+}
+
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(
@@ -45,7 +53,7 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   console.log("New Post Form button submitted!");
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 });
 
 const profileNameEl = document.querySelector(".profile__name");
@@ -54,28 +62,29 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  editProfileModal.classList.add("modal_is-opened");
+  openModal(editProfileModal);
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
   console.log("Edit Profile Close button clicked!");
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 });
 
 newPostAddButton.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
+  console.log("New Post button clicked!");
+  openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
   console.log("New Post Close button clicked!");
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 });
 
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 });
 
 initialCards.forEach(function (item) {
