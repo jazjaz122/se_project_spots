@@ -63,16 +63,22 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-cardsList = document.querySelector("cards__list");
+cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
-  const cardImageEl = cardImage.querySelector(".card__image");
+  const cardImageEl = cardElement.querySelector(".card__image");
 
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
+
+  const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
+  cardLikeButtonEl.addEventListener("click", () => {
+    cardLikeButtonEl.classList.toggle("");
+  });
+
   return cardElement;
 }
 
