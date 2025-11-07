@@ -110,18 +110,20 @@ editProfileForm.addEventListener("submit", function (evt) {
   closeModal(editProfileModal);
 });
 
-addCardFormEl.addEventListener("submit", function (evt) {
+newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
+  const newPostImageInput = document.querySelector("#card-image-input");
+  const newPostCaptionInput = document.querySelector("#card-caption-input");
 
   const inputValues = {
-    name: captionInputEl.value,
-    link: linkinputEl.value,
+    name: newPostImageInput.value,
+    link: newPostCaptionInput.value,
   };
 
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  addCardModal.classList.remove("modal_is-opened");
+  newPostModal.classList.remove("modal_is-opened");
 });
 
 initialCards.forEach(function (item) {
