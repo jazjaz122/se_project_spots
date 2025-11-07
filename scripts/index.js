@@ -76,7 +76,7 @@ function getCardElement(data) {
 
   const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
   cardLikeButtonEl.addEventListener("click", () => {
-    cardLikeButtonEl.classList.toggle("");
+    cardLikeButtonEl.classList.toggle("card__like-button_active");
   });
 
   return cardElement;
