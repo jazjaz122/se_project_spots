@@ -15,7 +15,7 @@
   padding: 10px;
 }
 
-.modal_is-opened {
+.modal_is_opened {
   visibility: visible;
   opacity: 1;
 }
