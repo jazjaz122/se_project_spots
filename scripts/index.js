@@ -1,5 +1,10 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -58,6 +63,7 @@ newPostForm.addEventListener("submit", function (evt) {
     name: newPostCaptionInput.value,
     link: newPostImageInput.value,
   };
+
   closeModal(newPostModal);
   const newCard = getCardElement(inputValues);
   cardsList.prepend(newCard);
@@ -65,6 +71,11 @@ newPostForm.addEventListener("submit", function (evt) {
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
+
+const previewModal = document.querySelector("#preview-modal");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close");
+const previewImageEl = previewModal.querySelector(".modal__image");
+const previewCaption = previewModal.querySelector(".modal__caption");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -84,6 +95,18 @@ function getCardElement(data) {
   const cardLikeButtonEl = cardElement.querySelector(".card__like-button");
   cardLikeButtonEl.addEventListener("click", () => {
     cardLikeButtonEl.classList.toggle("card__like-button_active");
+  });
+
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-button");
+  cardDeleteBtnEl.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    previewImageEl.src = data.link;
+    previewImageEl.alt = data.name;
+    previewCaption.textContent = data.name;
+    openModal(previewModal);
   });
 
   return cardElement;
@@ -116,6 +139,11 @@ editProfileForm.addEventListener("submit", function (evt) {
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
   closeModal(editProfileModal);
+});
+
+previewModalCloseBtn.addEventListener("click", function () {
+  console.log("Preview modal closed");
+  closeModal(previewModal);
 });
 
 initialCards.forEach(function (item) {
