@@ -69,6 +69,8 @@ newPostForm.addEventListener("submit", function (evt) {
   cardsList.prepend(newCard);
 });
 
+newPostForm.reset();
+
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 

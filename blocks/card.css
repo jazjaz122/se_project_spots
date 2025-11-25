@@ -11,6 +11,13 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.card__image:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .card__content {
@@ -33,6 +40,8 @@
 
 .card__like-button {
   background-image: url(../images/heart.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   width: 23px;
   height: 20px;
   border: none;
@@ -48,6 +57,8 @@
 
 .card__like-button_active {
   background-image: url(../images/redheart_active.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   opacity: 1;
 }
 

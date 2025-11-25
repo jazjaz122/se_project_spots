@@ -12,7 +12,7 @@
   visibility: hidden;
   opacity: 0;
   justify-content: center;
-  transition: visibility 0.5s linear, opacity o.5s linear;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
   padding: 0 10px;
 }
 
@@ -112,7 +112,7 @@
 
 .modal__submit-btn:hover {
   transform: scale(1.05);
-  transition: transform 0.3s li;
+  transition: transform 0.3s linear;
 }
 
 .modal__title {
@@ -169,16 +169,14 @@
 
 .modal__caption {
   background-color: #212121;
-  font: "Poppins";
+  font: "Poppins", Arial, sans-serif;
   color: #ffff;
   border-radius: 8px;
-  padding: 4px 8px 4px 8px;
-  width: 214px;
-  height: 32px;
-  top: 750px;
-  left: 223px;
+  padding: 8px 0;
+  position: absolute;
+  top: 10px;
+  left: 0;
   font-weight: 500;
-  font-style: medium;
   font-size: 20px;
   line-height: 120%;
   letter-spacing: 0;
@@ -206,10 +204,6 @@
     font-size: 16px;
     margin-bottom: 24px;
   }
-
-  .modal__button {
-    max-width: none;
-  }
 }
 
 @media screen and (max-width: 627px) {
@@ -220,5 +214,11 @@
 
   .modal__image {
     max-width: unset;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal__caption {
+    font-size: 16px;
   }
 }
