@@ -11,12 +11,12 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
-  opacity: 0.4;
+  opacity: 1;
   cursor: pointer;
 }
 
 .card__image:hover {
-  opacity: 1;
+  opacity: 0.4;
   cursor: pointer;
 }
 
@@ -76,6 +76,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  z-index: 1;
 }
 
 .card__delete-button:hover {

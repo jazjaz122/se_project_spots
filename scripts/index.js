@@ -63,6 +63,8 @@ newPostForm.addEventListener("submit", function (evt) {
     name: newPostCaptionInput.value,
     link: newPostImageInput.value,
   };
+  newPostImageInput.value = "";
+  newPostCaptionInput.value = "";
 
   closeModal(newPostModal);
   const newCard = getCardElement(inputValues);

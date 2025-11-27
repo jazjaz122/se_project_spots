@@ -79,7 +79,10 @@
       </div>
       <div class="modal" id="new-post-modal">
         <div class="modal__content">
-          <button type="button" class="modal__post-close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_type_preview"
+          ></button>
           <h2 class="modal__title">New post</h2>
           <form class="modal__form">
             <label for="card-image-input" class="modal__label">
@@ -109,8 +112,8 @@
       <div class="modal modal_type_preview" id="preview-modal">
         <div class="modal__image-container">
           <button
-            aria-label="modal__close modal__close_type_preview"
-            class="modal__close"
+            aria-label="Close modal"
+            class="modal__close modal__close_type_preview"
             type="button"
           ></button>
           <img src="#" alt="" class="modal__image" />
