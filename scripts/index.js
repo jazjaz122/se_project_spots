@@ -50,7 +50,7 @@ const editProfileDescriptionInput = document.querySelector(
 );
 const newPostAddBtn = document.querySelector(".profile__add-button");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__post-close-btn");
+const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 
 const newPostForm = newPostModal.querySelector(".modal__form");
 
@@ -70,8 +70,6 @@ newPostForm.addEventListener("submit", function (evt) {
   const newCard = getCardElement(inputValues);
   cardsList.prepend(newCard);
 });
-
-newPostForm.reset();
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
