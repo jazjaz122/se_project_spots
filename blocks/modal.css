@@ -1,5 +1,4 @@
 .modal {
-  transition: visibility 0.3s linear, opacity 0.3s linear;
   align-items: center;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   background-color: #00000080;
@@ -39,7 +38,7 @@
 .modal__close {
   width: 40px;
   height: 40px;
-  background: transparent url(../images/close\ white.svg) center no-repeat;
+  background: transparent url(../images/close.svg) center no-repeat;
   background-size: 35px 35px;
   border: none;
   position: absolute;
@@ -52,51 +51,8 @@
   opacity: 0.4;
 }
 
-.modal__close_type_preview {
-  top: 0;
-  right: -52.5px;
-}
-
 .modal__close:hover {
   opacity: 1;
-}
-
-.modal__edit-close-btn {
-  background-image: url(../images/close.svg);
-  position: absolute;
-  top: 32px;
-  right: 50px;
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal__edit-close-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s linear;
-}
-
-.modal__post-close-btn {
-  background-image: url(../images/close.svg);
-  position: absolute;
-  top: 32px;
-  right: 50px;
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal__post-close-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s linear;
 }
 
 .modal__submit-btn {
@@ -181,7 +137,7 @@
   top: calc(100% + 10px);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 320px) {
   .modal__content {
     padding: 22px 12px 12px;
   }
@@ -190,12 +146,12 @@
     font-size: 20px;
   }
 
-  .modal__post-close-btn {
+  .modal__close {
     top: 22px;
     right: 12px;
   }
 
-  .modal .modal__form {
+  .modal__form {
     margin-top: 34px;
   }
 
@@ -206,7 +162,7 @@
 }
 
 @media screen and (max-width: 627px) {
-  .modal__close_type_preview {
+  .modal__close {
     top: -48px;
     right: 0;
   }

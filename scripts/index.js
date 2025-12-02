@@ -64,8 +64,7 @@ newPostForm.addEventListener("submit", function (evt) {
   evt.target.reset();
 
   closeModal(newPostModal);
-  const newCard = getCardElement(inputValues);
-  cardsList.prepend(newCard);
+  renderCard(inputValues, "prepend");
 });
 
 const profileNameEl = document.querySelector(".profile__name");
@@ -116,6 +115,16 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function renderCard(data, position = "append") {
+  const cardElement = getCardElement(data);
+
+  if (position === "prepend") {
+    cardsList.prepend(cardElement);
+  } else {
+    cardsList.append(cardElement);
+  }
+}
+
 editProfileBtn.addEventListener("click", function () {
   console.log("Edit Profile button clicked");
   editProfileNameInput.value = profileNameEl.textContent;
@@ -137,6 +146,5 @@ editProfileForm.addEventListener("submit", function (evt) {
 });
 
 initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
+  renderCard(item, "append");
 });
