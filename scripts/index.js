@@ -55,21 +55,25 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  console.log("New Post Form button submitted!");
 
   const inputValues = {
     name: newPostCaptionInput.value,
     link: newPostImageInput.value,
   };
+
+  renderCard(inputValues, "prepend");
+
   evt.target.reset();
 
+  const inputList = Array.from(newPostForm.querySelectorAll(".modal__input"));
+  const buttonElement = newPostForm.querySelector(".modal__submit-btn");
+
+  toggleButtonState(inputList, buttonElement, settings);
   closeModal(newPostModal);
-  renderCard(inputValues, "prepend");
 });
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close");
 const previewImageEl = previewModal.querySelector(".modal__image");
@@ -141,8 +145,20 @@ editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
+  const buttonElement = editProfileForm.querySelector(".modal__submit-btn");
+  disableButton(buttonElement, settings);
   evt.target.reset();
+  closeModal(editProfileModal);
+});
+
+const allModals = document.querySelectorAll(".modal");
+
+allModals.forEach(function (modal) {
+  modal.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("modal__close")) {
+      modal.classList.remove("modal_is_opened");
+    }
+  });
 });
 
 initialCards.forEach(function (item) {
