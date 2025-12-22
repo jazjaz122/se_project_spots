@@ -32,10 +32,12 @@ const initialCards = [
 
 function openModal(modal) {
   modal.classList.add("modal_is_opened");
+  document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is_opened");
+  document.removeEventListener("keydown", handleEscape);
 }
 
 const editProfileBtn = document.querySelector(".profile__edit-button");
@@ -155,8 +157,8 @@ const allModals = document.querySelectorAll(".modal");
 
 allModals.forEach(function (modal) {
   modal.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("modal__close")) {
-      modal.classList.remove("modal_is_opened");
+    if (evt.target.classList.contains("modal")) {
+      closeModal(modal);
     }
   });
 });

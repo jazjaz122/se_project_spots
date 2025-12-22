@@ -32,4 +32,4 @@ https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spo
 
 Project Video
 
-https://1drv.ms/v/c/2568604f49291187/ES4ITzsSs9RFmqdKvNvt5R4BbPP9uJHbP5B3HuL0GBGE5g?e=kOZD1Q
+Check out this video (https://drive.google.com/file/d/1wTv20ChFLlHL15HUeb6Fx4X-c_Do6JSs/view?usp=sharing), where I describe my project and some challenges I faced while building it.
