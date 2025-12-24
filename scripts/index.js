@@ -32,12 +32,10 @@ const initialCards = [
 
 function openModal(modal) {
   modal.classList.add("modal_is_opened");
-  document.addEventListener("keydown", handleEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is_opened");
-  document.removeEventListener("keydown", handleEscape);
 }
 
 const editProfileBtn = document.querySelector(".profile__edit-button");
@@ -55,22 +53,24 @@ const newPostModal = document.querySelector("#new-post-modal");
 
 const newPostForm = newPostModal.querySelector(".modal__form");
 
+newPostAddBtn.addEventListener("click", function () {
+  resetFormValidation(newPostForm, settings);
+  openModal(newPostModal);
+});
+
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const inputValues = {
-    name: newPostCaptionInput.value,
-    link: newPostImageInput.value,
-  };
-
-  renderCard(inputValues, "prepend");
+  renderCard(
+    {
+      name: newPostCaptionInput.value,
+      link: newPostImageInput.value,
+    },
+    "prepend"
+  );
 
   evt.target.reset();
-
-  const inputList = Array.from(newPostForm.querySelectorAll(".modal__input"));
-  const buttonElement = newPostForm.querySelector(".modal__submit-btn");
-
-  toggleButtonState(inputList, buttonElement, settings);
+  resetFormValidation(newPostForm, settings);
   closeModal(newPostModal);
 });
 
@@ -132,24 +132,20 @@ function renderCard(data, position = "append") {
 }
 
 editProfileBtn.addEventListener("click", function () {
-  console.log("Edit Profile button clicked");
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+  resetFormValidation(editProfileForm, settings);
   openModal(editProfileModal);
-});
-
-newPostAddBtn.addEventListener("click", function () {
-  console.log("New Post button clicked!");
-  openModal(newPostModal);
 });
 
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
+
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  const buttonElement = editProfileForm.querySelector(".modal__submit-btn");
-  disableButton(buttonElement, settings);
+
   evt.target.reset();
+  resetFormValidation(editProfileForm, settings);
   closeModal(editProfileModal);
 });
 
