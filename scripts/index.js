@@ -159,6 +159,15 @@ allModals.forEach(function (modal) {
   });
 });
 
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+});
+
 initialCards.forEach(function (item) {
   renderCard(item, "append");
 });
