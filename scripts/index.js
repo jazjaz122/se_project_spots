@@ -1,3 +1,9 @@
+import {
+  enableValidation,
+  validationConfig,
+  resetFormValidation,
+} from "./validation.js";
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -44,7 +50,7 @@ const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = document.querySelector("#profile-name-input");
 const editProfileDescriptionInput = document.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 const newPostImageInput = document.querySelector("#card-image-input");
 const newPostCaptionInput = document.querySelector("#card-caption-input");
@@ -54,7 +60,7 @@ const newPostModal = document.querySelector("#new-post-modal");
 const newPostForm = newPostModal.querySelector(".modal__form");
 
 newPostAddBtn.addEventListener("click", function () {
-  resetFormValidation(newPostForm, settings);
+  resetFormValidation(newPostForm, validationConfig);
   openModal(newPostModal);
 });
 
@@ -66,11 +72,11 @@ newPostForm.addEventListener("submit", function (evt) {
       name: newPostCaptionInput.value,
       link: newPostImageInput.value,
     },
-    "prepend"
+    "prepend",
   );
 
   evt.target.reset();
-  resetFormValidation(newPostForm, settings);
+  resetFormValidation(newPostForm, validationConfig);
   closeModal(newPostModal);
 });
 
@@ -134,7 +140,7 @@ function renderCard(data, position = "append") {
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  resetFormValidation(editProfileForm, settings);
+  resetFormValidation(editProfileForm, validationConfig);
   openModal(editProfileModal);
 });
 
@@ -145,7 +151,7 @@ editProfileForm.addEventListener("submit", function (evt) {
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
   evt.target.reset();
-  resetFormValidation(editProfileForm, settings);
+  resetFormValidation(editProfileForm, validationConfig);
   closeModal(editProfileModal);
 });
 
@@ -171,3 +177,5 @@ document.addEventListener("keydown", function (evt) {
 initialCards.forEach(function (item) {
   renderCard(item, "append");
 });
+
+enableValidation(validationConfig);
