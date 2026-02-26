@@ -1,15 +1,14 @@
-import {
-  enableValidation,
-  validationConfig,
-  resetFormValidation,
-} from "./validation.js";
+import "./index.css";
+import Api from "../utils/Api.js";
+
+import { validationConfig } from "../utils/constants.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
     name: "Golden Gate Bridge",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
-
   {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -52,45 +51,62 @@ const editProfileNameInput = document.querySelector("#profile-name-input");
 const editProfileDescriptionInput = document.querySelector(
   "#profile-description-input",
 );
+
 const newPostImageInput = document.querySelector("#card-image-input");
 const newPostCaptionInput = document.querySelector("#card-caption-input");
 const newPostAddBtn = document.querySelector(".profile__add-button");
 const newPostModal = document.querySelector("#new-post-modal");
-
 const newPostForm = newPostModal.querySelector(".modal__form");
-
-newPostAddBtn.addEventListener("click", function () {
-  resetFormValidation(newPostForm, validationConfig);
-  openModal(newPostModal);
-});
-
-newPostForm.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  renderCard(
-    {
-      name: newPostCaptionInput.value,
-      link: newPostImageInput.value,
-    },
-    "prepend",
-  );
-
-  evt.target.reset();
-  resetFormValidation(newPostForm, validationConfig);
-  closeModal(newPostModal);
-});
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
+
 const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
+
 const closeButtons = document.querySelectorAll(".modal__close");
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "9ac9e460-7317-4f34-9018-10614fb697d1",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardList.append(cardEl);
+    });
+  })
+  .catch(console.error);
 
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
+});
+
+const allModals = document.querySelectorAll(".modal");
+
+allModals.forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      closeModal(modal);
+    }
+  });
+});
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
 });
 
 const cardTemplate = document
@@ -103,6 +119,7 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
+
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
@@ -136,46 +153,51 @@ function renderCard(data, position = "append") {
     cardsList.append(cardElement);
   }
 }
+const editProfileValidator = new FormValidator(
+  validationConfig,
+  editProfileForm,
+);
+editProfileValidator.enableValidation();
 
-editProfileBtn.addEventListener("click", function () {
+const newPostValidator = new FormValidator(validationConfig, newPostForm);
+newPostValidator.enableValidation();
+
+newPostAddBtn.addEventListener("click", () => {
+  newPostValidator.resetValidation();
+  openModal(newPostModal);
+});
+
+newPostForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  renderCard(
+    {
+      name: newPostCaptionInput.value,
+      link: newPostImageInput.value,
+    },
+    "prepend",
+  );
+
+  evt.target.reset();
+  newPostValidator.resetValidation();
+  closeModal(newPostModal);
+});
+
+editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  resetFormValidation(editProfileForm, validationConfig);
+
+  editProfileValidator.resetValidation();
   openModal(editProfileModal);
 });
 
-editProfileForm.addEventListener("submit", function (evt) {
+editProfileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
   evt.target.reset();
-  resetFormValidation(editProfileForm, validationConfig);
+  editProfileValidator.resetValidation();
   closeModal(editProfileModal);
 });
-
-const allModals = document.querySelectorAll(".modal");
-
-allModals.forEach(function (modal) {
-  modal.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("modal")) {
-      closeModal(modal);
-    }
-  });
-});
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_is_opened");
-    if (openedModal) {
-      closeModal(openedModal);
-    }
-  }
-});
-
-initialCards.forEach(function (item) {
-  renderCard(item, "append");
-});
-
-enableValidation(validationConfig);
