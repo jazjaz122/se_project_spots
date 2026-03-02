@@ -85,6 +85,73 @@ api
   })
   .catch(console.error);
 
+api
+  .getAppInfo()
+  .then(([cards, userData]) => {
+    setUserInfo(userData);
+    cards.forEach((item) => {
+      renderCard(item, "append");
+    });
+  })
+  .catch(console.error);
+
+newPostAddBtn.addEventListener("click", () => {
+  newPostValidator.resetValidation();
+  openModal(newPostModal);
+});
+
+newPostForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  api
+    .createCard({
+      name: newPostCaptionInput.value,
+      link: newPostImageInput.value,
+    })
+    .then((card) => {
+      renderCard(card, "prepend");
+      evt.target.reset();
+      newPostValidator.resetValidation();
+      closeModal(newPostModal);
+    })
+    .catch(console.error);
+});
+
+editProfileBtn.addEventListener("click", () => {
+  editProfileNameInput.value = profileNameEl.textContent;
+  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+
+  editProfileValidator.resetValidation();
+  openModal(editProfileModal);
+});
+
+editProfileForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((userData) => {
+      setUserInfo(userData);
+      evt.target.reset();
+      editProfileValidator.resetValidation();
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
+
+  api
+    .updateAvatar({
+      avatar: avatarInput.value,
+    })
+    .then((userData) => {
+      profileAvatarEl.src = userData.avatar;
+      closeModal(editAvatarModal);
+    })
+    .catch(console.error);
+});
+
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener("click", () => closeModal(popup));
