@@ -8,6 +8,7 @@ class Api {
     if (res.ok) {
       return res.json();
     }
+
     return Promise.reject(`Error: ${res.status}`);
   }
 
@@ -27,6 +28,7 @@ class Api {
       headers: this._headers,
     });
   }
+
   getUserInfo() {
     return this._request("/users/me", {
       method: "GET",
@@ -34,44 +36,53 @@ class Api {
     });
   }
 
-  editUserInfo(name, about) {
+  editUserInfo({ name, about }) {
     return this._request("/users/me", {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({ name, about }),
+      body: JSON.stringify({
+        name,
+        about,
+      }),
     });
   }
-  updateAvatar(avatar) {
+
+  updateAvatar({ avatar }) {
     return this._request("/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({ avatar }),
+      body: JSON.stringify({
+        avatar,
+      }),
     });
   }
 
-  createCard({ name, link }) {
+  addCard({ name, link }) {
     return this._request("/cards", {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({ name, link }),
+      body: JSON.stringify({
+        name,
+        link,
+      }),
     });
   }
 
-  deleteCard(cardId) {
+  removeCard(cardId) {
     return this._request(`/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     });
   }
 
-  likeCard(cardId) {
+  addLike(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     });
   }
 
-  dislikeCard(cardId) {
+  removeLike(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
